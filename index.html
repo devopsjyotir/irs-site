@@ -118,7 +118,7 @@
         <span class="xp" aria-hidden="true" style="--i:0"><b>I</b></span>
         <span class="xp" aria-hidden="true" style="--i:1"><b>R</b>ugged</span>
         <span class="xp" aria-hidden="true" style="--i:2"><b>S</b>uccessfully</span>
-        <span class="hero__ticker">$IRS</span>
+        <span class="hero__ticker"><i aria-hidden="true"></i>$IRS</span>
       </p>
 
       <p class="hero__copy">
@@ -129,7 +129,7 @@
 
       <div class="hero__actions">
         <a class="btn btn--solid" data-cta="buy" href="#record">Buy $IRS</a>
-        <a class="btn btn--ghost" href="#record">View contract</a>
+        <a class="btn btn--text" href="#record">View contract <span class="btn__arrow" aria-hidden="true">&#8594;</span></a>
       </div>
       <p class="hero__note" data-cta-note hidden></p>
     </div>
@@ -314,7 +314,7 @@
       </div>
       <div class="contract__row">
         <code class="contract__value" data-contract-display title="">CONTRACT_ADDRESS_HERE</code>
-        <button class="contract__copy" type="button" data-copy>
+        <button class="textbtn" type="button" data-copy>
           <span class="contract__copy-text">Copy</span>
         </button>
       </div>
@@ -325,12 +325,12 @@
       </div>
     </div>
 
-    <p class="risk">
-      <span class="risk__flag" aria-hidden="true"></span>
-      <span><strong>Risk disclosure.</strong> $IRS is a meme token. It has no intrinsic
-      value, no promise of return and no obligation to anyone. Tokens like this
-      routinely go to zero. Never commit money you cannot afford to lose entirely.</span>
-    </p>
+    <aside class="risk">
+      <p class="risk__label">Risk disclosure</p>
+      <p class="risk__body">$IRS is a meme token. It has no intrinsic value, no promise of
+      return and no obligation to anyone. Tokens like this routinely go to zero.
+      Never commit money you cannot afford to lose entirely.</p>
+    </aside>
   </div>
 </section>
 
@@ -352,10 +352,20 @@
 
       <p class="check__written">Zero and 00/100 dollars</p>
 
-      <div class="check__status">
-        <span class="check__chip">Processed successfully</span>
-        <span class="check__thanks">Thank you for your involuntary contribution.</span>
-      </div>
+      <dl class="stub">
+        <div class="stub__row is-key">
+          <dt>Status</dt>
+          <dd>Processed successfully</dd>
+        </div>
+        <div class="stub__row">
+          <dt>Method</dt>
+          <dd>Applied against future gains</dd>
+        </div>
+        <div class="stub__row">
+          <dt>Remarks</dt>
+          <dd>Thank you for your involuntary contribution</dd>
+        </div>
+      </dl>
 
       <p class="check__micr" aria-hidden="true">&#8862;000000000&#8862; 42069&#8863; 0000&#8862;</p>
     </div>
@@ -504,7 +514,7 @@
         <div class="foot__col foot__col--wide">
           <h2>Contract</h2>
           <code class="foot__contract" data-contract-display>CONTRACT_ADDRESS_HERE</code>
-          <button class="foot__copy" type="button" data-copy><span class="contract__copy-text">Copy address</span></button>
+          <button class="textbtn foot__copy" type="button" data-copy><span class="contract__copy-text">Copy address</span></button>
         </div>
       </div>
     </div>
