@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://iruggedsuccessfully.com/sitemap.xml

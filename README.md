@@ -104,7 +104,7 @@ Typefaces: **Instrument Serif** (display), **Newsreader** (body),
 - [ ] Set `MINT_AUTHORITY` / `FREEZE_AUTHORITY` **only if actually revoked**
 - [ ] Add `BUY_URL`, `X_URL`, `TELEGRAM_URL`
 - [ ] Swap the four notice placeholders for real memes
-- [ ] Update the `og:image` URL to an absolute one once the domain is live
+- [x] ~~Update the `og:image` URL to an absolute one~~ (done — points at iruggedsuccessfully.com)
 
 ---
 
