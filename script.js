@@ -12,6 +12,9 @@
 
 const CONFIG = {
 
+  /* ── Site ──────────────────────────────────────────────────────── */
+  SITE_URL:         "https://iruggedsuccessfully.com",   // printed on generated notices
+
   /* ── Token ─────────────────────────────────────────────────────── */
   TOKEN_NAME:       "I Rugged Successfully",
   TOKEN_SYMBOL:     "$IRS",

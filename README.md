@@ -5,9 +5,13 @@ framework, no dependencies. Open `index.html` or drop the folder on any static
 host (Netlify, Vercel, Cloudflare Pages, GitHub Pages, S3).
 
 ```
-index.html      markup
-styles.css      all styling
-script.js       config + behaviour
+index.html      homepage
+audit.html      /audit — the GET AUDITED notice generator
+styles.css      shared styling and design tokens
+audit.css       generator styling (loaded only on /audit)
+script.js       config + shared behaviour
+audit-data.js   all generator copy: reasons, findings, captions
+audit.js        generator logic + canvas rendering
 assets/         logo variants, icons, social image
 ```
 
@@ -54,7 +58,45 @@ element's `title`.
 
 ---
 
-## 2. Adding a meme / notice
+## 2. GET AUDITED (`/audit`)
+
+Visitors generate a personalised parody notice and download it as a PNG.
+Everything runs in the browser — no server, no database, no dependencies.
+
+**Editing the humour.** All copy is in `audit-data.js`:
+
+- `reasons[]` — the twelve grounds for examination. Each has a `label`, the
+  optional third field's `label`/`placeholder`, a `status`, two `stamp` lines
+  and three `findings` (one is picked at random).
+- `filingStatuses[]`, `captions[]`, `randomSubjects[]`, `randomExtras[]`.
+
+Add a thirteenth reason by appending an object to `reasons[]` — the form row,
+the conditional field and the notice all pick it up with no other changes.
+
+**The exported image** is drawn with the Canvas 2D API in `audit.js`
+(`drawNotice`), at 1200 × 1500 with a 2× backing store, so the PNG is
+2400 × 3000 and stays sharp on high-DPI screens. The on-screen preview *is*
+the export canvas, so what you see is exactly what downloads. Filename:
+`IRS-AUDIT-<SUBJECT>.png`, sanitised.
+
+**Sharing.** Download writes the PNG. On phones that support it, Share opens
+the native sheet with the image attached. On desktop, Post on X opens a
+compose window with the caption prefilled — X cannot attach a local image from
+a link, and the UI says so rather than pretending otherwise.
+
+**Analytics.** No vendor is installed. Six events fire — `audit_started`,
+`audit_generated`, `audit_downloaded`, `audit_shared`, `audit_x_clicked`,
+`audit_reset` — each pushed to `window.IRS_EVENTS`, dispatched as
+`irs:<event>` DOM events, and forwarded to `window.plausible` or
+`window.dataLayer` if either ever exists. Attach a provider without editing
+`audit.js`.
+
+**Deep links.** `/audit?r=<reason-id>` preselects a reason, e.g.
+`/audit?r=buying-the-top`.
+
+---
+
+## 3. Adding a meme / notice
 
 In `index.html`, find `<div class="notices">` in **Section 06 · Public records**.
 Duplicate one `<article class="notice-card">` block and replace the placeholder:
@@ -73,7 +115,7 @@ Images are cropped to a 4:5 box, so portrait art works best. Always keep
 
 ---
 
-## 3. Design tokens
+## 4. Design tokens
 
 Colours, spacing, type and layout widths are CSS custom properties at the top of
 `styles.css` under `01 · DESIGN TOKENS`. Change `--navy`, `--paper`, `--red` and
@@ -84,7 +126,7 @@ Typefaces: **Instrument Serif** (display), **Newsreader** (body),
 
 ---
 
-## 4. Assets
+## 5. Assets
 
 | File | Use |
 |---|---|
@@ -97,13 +139,14 @@ Typefaces: **Instrument Serif** (display), **Newsreader** (body),
 
 ---
 
-## 5. Before launch
+## 6. Before launch
 
 - [ ] Paste the real `CONTRACT_ADDRESS`
 - [ ] Set `NETWORK` and `TOTAL_SUPPLY`
 - [ ] Set `MINT_AUTHORITY` / `FREEZE_AUTHORITY` **only if actually revoked**
 - [ ] Add `BUY_URL`, `X_URL`, `TELEGRAM_URL`
 - [ ] Swap the four notice placeholders for real memes
+- [ ] Nothing to configure for GET AUDITED — it uses `SITE_URL` from `CONFIG`
 - [x] ~~Update the `og:image` URL to an absolute one~~ (done — points at iruggedsuccessfully.com)
 
 ---
